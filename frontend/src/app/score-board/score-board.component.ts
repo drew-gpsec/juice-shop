@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+import * as escapeHtml from 'escape-html'
 import { MatTableDataSource } from '@angular/material/table'
 import { DomSanitizer } from '@angular/platform-browser'
 import { ChallengeService } from '../Services/challenge.service'
@@ -214,7 +215,7 @@ export class ScoreBoardComponent implements OnInit, AfterViewInit {
   }
 
   trustDescriptionHtml (challenge: Challenge) {
-    challenge.description = this.sanitizer.bypassSecurityTrustHtml(challenge.description as string)
+    challenge.description = this.sanitizer.bypassSecurityTrustHtml(escapeHtml(challenge.description as string))
   }
 
   calculateCodingProgressPercentage () {
